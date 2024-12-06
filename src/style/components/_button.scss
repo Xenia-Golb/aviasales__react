@@ -1,0 +1,10 @@
+@import '../main.scss';
+.button {
+  width: 10.5rem;
+  height: 3.13rem;
+  background-color: $background-color;
+  &:hover {
+    background-color: $primary-color;
+    color: $font-color-text-button;
+  }
+}
