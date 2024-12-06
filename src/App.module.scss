@@ -1,0 +1,13 @@
+@import './style/main.scss';
+
+body {
+  font-family: $font-family;
+}
+.container {
+  margin-top: 54px;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+}
