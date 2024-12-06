@@ -1,0 +1,23 @@
+.select {
+  width: 14.5rem;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ccc;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: 0.31rem;
+  box-shadow: 0rem 0.13rem 0.5rem 0rem rgba(0, 0, 0, 0.1);
+  background: rgb(255, 255, 255);
+  padding-bottom: 20px;
+  gap: 5px;
+  .title {
+    color: rgb(74, 74, 74);
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 0.75rem;
+    letter-spacing: 0.03rem;
+    text-align: left;
+    text-transform: uppercase;
+    padding: 20px 0 20px;
+  }
+}

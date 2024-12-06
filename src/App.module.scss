@@ -1,7 +1,10 @@
-@import './style/main.scss';
+@use './style/main' as *;
 
-body {
-  font-family: $font-family;
+* {
+  font-family: 'Open Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 .container {
   margin-top: 54px;
@@ -11,10 +14,9 @@ body {
   align-items: center;
   justify-content: center;
 }
-.select {
-  margin-top: 20px;
-  width: 200px;
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
+.content {
+  margin-top: 54px;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
 }
