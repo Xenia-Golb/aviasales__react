@@ -1,5 +1,6 @@
 import style from './App.module.scss';
 import logo from './assets/img/Logo.svg';
+import s7 from './assets/img/S7_Logo.png';
 
 function App() {
   return (
@@ -35,8 +36,15 @@ function App() {
           <button className={style['tabs__button']}>Самый быстрый</button>
           <button className={style['tabs__button']}>Самый дешевый</button>
           <button className={style['tabs__button']}>Оптимальный</button>
-          <div className={style['tikets-list']}>
-            <div className={style['tiket']}>tiket 1</div>
+          <div className={style['tickets-list']}>
+            <div className={style['ticket']}>
+              <div className={style['ticket-header']}>
+                <div className={style['ticket-header__price']}>13 400 Р </div>
+                <div className={style['ticket-header__logo']}>
+                  <img src={s7} />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
