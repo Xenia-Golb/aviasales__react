@@ -1,23 +1,25 @@
+@use '../base/variables' as *;
+
 .select {
-  width: 14.5rem;
+  font-family: $font-family;
+  width: $select-width;
+  max-height: $select-max-height;
   display: flex;
   flex-direction: column;
-  border: 1px solid #ccc;
+  border: 1px solid $select-border-color;
   justify-content: flex-start;
   align-items: center;
-  border-radius: 0.31rem;
-  box-shadow: 0rem 0.13rem 0.5rem 0rem rgba(0, 0, 0, 0.1);
-  background: rgb(255, 255, 255);
-  padding-bottom: 20px;
-  gap: 5px;
+  border-radius: $select-border-radius;
+  box-shadow: $select-box-shadow;
+  background: $background-color;
+  padding-bottom: $select-padding-bottom;
+
   .title {
-    color: rgb(74, 74, 74);
-    font-size: 0.75rem;
-    font-weight: 600;
-    line-height: 0.75rem;
-    letter-spacing: 0.03rem;
+    color: $font-color;
+    font-size: $title-font-size;
+    line-height: $title-line-height;
     text-align: left;
     text-transform: uppercase;
-    padding: 20px 0 20px;
+    padding: $title-padding;
   }
 }

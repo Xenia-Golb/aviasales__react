@@ -44,8 +44,77 @@ function App() {
                   <img src={s7} />
                 </div>
               </div>
+              <div className="ticket-items">
+                <div className={style['ticket__info']}>
+                  <div className={style['ticket-info__all']}>
+                    MOW – HKT <span>08:00 - 10:00</span>
+                  </div>
+                  <div className={style['ticket-info__all']}>
+                    В пути:
+                    <span> 21ч 15м</span>
+                  </div>
+                  <div className={style['ticket-info__all']}>
+                    1 пересадка
+                    <span>HKG, JNB</span>
+                  </div>
+                </div>
+                <div className={style['ticket__info']}>
+                  <div className={style['ticket-info__all']}>
+                    MOW – HKT <span>08:00 - 10:00</span>
+                  </div>
+                  <div className={style['ticket-info__all']}>
+                    В пути:
+                    <span> 21ч 15м</span>
+                  </div>
+                  <div className={style['ticket-info__all']}>
+                    1 пересадка
+                    <span>HKG, JNB</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
+          <div className={style['tickets-list']}>
+            <div className={style['ticket']}>
+              <div className={style['ticket-header']}>
+                <div className={style['ticket-header__price']}>13 400 Р </div>
+                <div className={style['ticket-header__logo']}>
+                  <img src={s7} />
+                </div>
+              </div>
+              <div className="ticket-items">
+                <div className={style['ticket__info']}>
+                  <div className={style['ticket-info__all']}>
+                    MOW – HKT <span>08:00 - 10:00</span>
+                  </div>
+                  <div className={style['ticket-info__all']}>
+                    В пути:
+                    <span> 21ч 15м</span>
+                  </div>
+                  <div className={style['ticket-info__all']}>
+                    1 пересадка
+                    <span>HKG, JNB</span>
+                  </div>
+                </div>
+                <div className={style['ticket__info']}>
+                  <div className={style['ticket-info__all']}>
+                    MOW – HKT <span>08:00 - 10:00</span>
+                  </div>
+                  <div className={style['ticket-info__all']}>
+                    В пути:
+                    <span> 21ч 15м</span>
+                  </div>
+                  <div className={style['ticket-info__all']}>
+                    1 пересадка
+                    <span>HKG, JNB</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button className={style['content__button']}>
+            Показать еще 5 билетов
+          </button>
         </div>
       </div>
     </div>

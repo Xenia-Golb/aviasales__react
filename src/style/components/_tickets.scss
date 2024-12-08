@@ -1,0 +1,54 @@
+@use '../base/variables' as *;
+
+.ticket {
+  margin-top: 20px;
+  min-width: $ticket-min-width;
+  min-height: $ticket-min-height;
+  border-radius: $ticket-border-radius;
+  box-shadow: $ticket-box-shadow;
+  background: $background-color;
+  display: flex;
+  flex-direction: column;
+  gap: $ticket-gap;
+
+  &__info {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: $ticket-gap;
+    padding-left: $info-padding-left;
+    padding-bottom: $info-padding-bottom;
+    font-family: $font-family;
+    color: $font-color;
+
+    .ticket-info__all {
+      font-size: $font-size-ticket-info;
+      color: $font-color-text;
+      line-height: 1.31rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-transform: uppercase;
+
+      span {
+        font-size: $font-size-ticket-span;
+        color: $font-color;
+        text-transform: none;
+      }
+    }
+  }
+}
+
+.ticket-header {
+  padding: $ticket-header-padding;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__price {
+    color: $primary-color;
+    font-family: $font-family;
+    font-size: $ticket-price-font-size;
+    line-height: 1.5rem;
+    text-align: left;
+  }
+}

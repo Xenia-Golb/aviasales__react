@@ -5,6 +5,51 @@ $font-color: #4a4a4a;
 $font-color-text-button: #ffffff;
 $font-color-text: #a0b0b9;
 $font-size-base: 0.81rem;
+$font-size-heading: 1.5rem;
 $font-family: 'Open Sans', sans-serif;
 //background-color :
 $background-color: #ffffff;
+
+//button
+$button-border: 0.06rem solid rgb(223, 229, 236);
+$button-border-active: 1px solid $primary-color;
+$button-border-radius: 5px;
+$button-height: 3.13rem;
+
+//checkbox
+
+$checkbox-size: 1.25rem;
+$checkbox-border-color: #9abbce;
+$checkbox-checked-bg: $background-color;
+$checkbox-border-radius: 0.13rem;
+$checkbox-transition:
+  background-color 0.3s ease,
+  border-color 0.3s ease;
+
+//select
+$select-width: 14.5rem;
+$select-max-height: 15.75rem;
+$select-border-color: #ccc;
+$select-border-radius: 0.31rem;
+$select-box-shadow: 0rem 0.13rem 0.5rem 0rem rgba(0, 0, 0, 0.1);
+$select-padding-bottom: 20px;
+
+$title-font-size: 0.75rem;
+$title-line-height: 0.75rem;
+$title-padding: 20px 0 10px;
+
+//ticket
+
+$ticket-min-width: 31.38rem;
+$ticket-min-height: 11.5rem;
+$ticket-border-radius: 0.31rem;
+$ticket-box-shadow: 0rem 0.13rem 0.5rem 0rem rgba(0, 0, 0, 0.1);
+$ticket-gap: 10px;
+
+$info-padding-left: 20px;
+$info-padding-bottom: 10px;
+$font-size-ticket-info: 0.75rem;
+$font-size-ticket-span: 0.88rem;
+
+$ticket-header-padding: 26px 20px 0 20px;
+$ticket-price-font-size: $font-size-heading;
