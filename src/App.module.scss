@@ -14,9 +14,12 @@
   align-items: center;
   justify-content: center;
 }
-.content {
+.main {
   margin-top: 54px;
   display: flex;
-  flex-direction: row;
   gap: 20px;
+}
+.content {
+  display: flex;
+  flex-direction: column;
 }
