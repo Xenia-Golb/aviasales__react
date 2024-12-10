@@ -4,7 +4,7 @@ import filterSlice from './slices/filterSlice';
 
 export const store = configureStore({
   reducer: {
-    filterSlice,
+    sort: filterSlice,
   },
 });
 export type RootState = ReturnType<typeof store.getState>;

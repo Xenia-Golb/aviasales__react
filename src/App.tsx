@@ -12,7 +12,7 @@ function App() {
       <div className={style['main']}>
         <Select />
         <div className={style['content']}>
-          <Tabs />
+          <Tabs sortBy="price" />
           <TicketsList />
           <button className={style['content__button']}>
             Показать еще 5 билетов

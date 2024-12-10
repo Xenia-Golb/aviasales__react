@@ -1,15 +1,16 @@
+// filterSlice.ts
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-type SortState = {
+type FilterState = {
   sortBy: 'price' | 'duration' | 'optimality';
 };
 
-const initialState: SortState = {
-  sortBy: 'price',
+const initialState: FilterState = {
+  sortBy: 'price', // Начальное значение сортировки
 };
 
 const filterSlice = createSlice({
-  name: 'sort',
+  name: 'filter',
   initialState,
   reducers: {
     setSortBy(
@@ -20,6 +21,6 @@ const filterSlice = createSlice({
     },
   },
 });
-export const { setSortBy } = filterSlice.actions;
 
-export default filterSlice.reducer;
+export const { setSortBy } = filterSlice.actions; // Экспортируем экшен
+export default filterSlice.reducer; // Экспортируем редьюсер
