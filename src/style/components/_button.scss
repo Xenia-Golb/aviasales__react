@@ -16,7 +16,10 @@
   }
 
   &--active {
-    // Additional styles for active state (if any) can be added here
+    background-color: $primary-color;
+    color: $font-color-text-button;
+    border: $button-border-active;
+    border-radius: $button-border-radius;
   }
 }
 

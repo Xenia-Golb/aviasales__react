@@ -2,11 +2,23 @@ import { Component, ReactNode } from 'react';
 import style from '../../style/main.module.scss';
 import { Ticket } from '../index';
 
-export class TicketsList extends Component {
+type TicketItem = {
+  price: string;
+};
+
+type TicketsListProps = {
+  tickets: TicketItem[];
+};
+
+export class TicketsList extends Component<TicketsListProps> {
   render(): ReactNode {
+    const { tickets } = this.props;
+
     return (
       <div className={style['tickets-list']}>
-        <Ticket price={'13 400P'} />
+        {tickets.map((ticket, index) => (
+          <Ticket key={index} price={ticket.price} />
+        ))}
       </div>
     );
   }

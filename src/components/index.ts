@@ -1,5 +1,5 @@
 export { Checkbox } from './checkbox/checkbox';
-export { Select } from './select/select';
+export { default as Select } from './select/select';
 export { TabsButton } from './tabs/tabs-button';
 export { Tabs } from './tabs/tabs';
 export { Ticket } from './tickets-list/ticket';

@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
-import filterSlice from './slices/filterSlice';
+import filterReducer from './slices/filterSlice';
+import checkboxReducer from './slices/checkboxSlice';
 
 export const store = configureStore({
   reducer: {
-    sort: filterSlice,
+    filter: filterReducer,
+    checkbox: checkboxReducer,
   },
 });
 export type RootState = ReturnType<typeof store.getState>;

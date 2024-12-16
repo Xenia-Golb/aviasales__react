@@ -1,20 +1,41 @@
 import { Component, ReactNode } from 'react';
 import style from '../../style/main.module.scss';
 
-export class TicketInfo extends Component {
+type TicketInfoProps = {
+  from: string;
+  to: string;
+  departureTime: string;
+  arrivalTime: string;
+  duration: string;
+  stops: string;
+  stopCities: string;
+};
+
+export class TicketInfo extends Component<TicketInfoProps> {
   render(): ReactNode {
+    const {
+      from,
+      to,
+      departureTime,
+      arrivalTime,
+      duration,
+      stops,
+      stopCities,
+    } = this.props;
+
     return (
       <div className={style['ticket__info']}>
         <div className={style['ticket-info__all']}>
-          MOW – HKT <span>08:00 - 10:00</span>
+          {from} – {to}{' '}
+          <span>
+            {departureTime} - {arrivalTime}
+          </span>
         </div>
         <div className={style['ticket-info__all']}>
-          В пути:
-          <span> 21ч 15м</span>
+          В пути: <span>{duration}</span>
         </div>
         <div className={style['ticket-info__all']}>
-          1 пересадка
-          <span>HKG, JNB</span>
+          {stops} пересадка <span>{stopCities}</span>
         </div>
       </div>
     );
