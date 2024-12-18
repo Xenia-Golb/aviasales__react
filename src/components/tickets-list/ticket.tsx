@@ -1,14 +1,26 @@
-import { Component, ReactNode } from 'react';
+import React, { Component, ReactNode } from 'react';
 import style from '../../style/main.module.scss';
 import s7 from '../../assets/img/S7_Logo.png';
 import { TicketInfo } from '../index';
+import { TicketInfoProps } from './ticket-info';
 
 type TicketProps = {
   price: string;
-};
+} & TicketInfoProps;
+
 export class Ticket extends Component<TicketProps> {
   render(): ReactNode {
-    const { price } = this.props;
+    const {
+      price,
+      from,
+      to,
+      departureTime,
+      arrivalTime,
+      duration,
+      stops,
+      stopCities,
+    } = this.props;
+
     return (
       <div className={style['ticket']}>
         <div className={style['ticket-header']}>
@@ -19,22 +31,13 @@ export class Ticket extends Component<TicketProps> {
         </div>
         <div className={style['ticket-items']}>
           <TicketInfo
-            from="MOW"
-            to="HKT"
-            departureTime="08:00"
-            arrivalTime="10:00"
-            duration="21ч 15м"
-            stops="1"
-            stopCities="HKG, JNB"
-          />
-          <TicketInfo
-            from="LED"
-            to="PAR"
-            departureTime="12:30"
-            arrivalTime="16:45"
-            duration="4ч 15м"
-            stops="0"
-            stopCities=""
+            from={from}
+            to={to}
+            departureTime={departureTime}
+            arrivalTime={arrivalTime}
+            duration={duration}
+            stops={stops}
+            stopCities={stopCities}
           />
         </div>
       </div>

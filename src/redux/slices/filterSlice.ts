@@ -22,5 +22,5 @@ const filterSlice = createSlice({
   },
 });
 
-export const { setSortBy } = filterSlice.actions; // Экспортируем экшен
-export default filterSlice.reducer; // Экспортируем редьюсер
+export const { setSortBy } = filterSlice.actions;
+export default filterSlice.reducer;

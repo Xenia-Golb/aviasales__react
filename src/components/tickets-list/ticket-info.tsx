@@ -1,7 +1,7 @@
 import { Component, ReactNode } from 'react';
 import style from '../../style/main.module.scss';
 
-type TicketInfoProps = {
+export type TicketInfoProps = {
   from: string;
   to: string;
   departureTime: string;
