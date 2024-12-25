@@ -6,7 +6,7 @@ type ApiResponse = {
   stop: boolean;
 };
 
-const API_URL = 'https://aviasales-test-api.kata.academy';
+const API_URL = import.meta.env.VITE_API_URL;
 
 const getSearchId = async () => {
   const response = await axios.get(`${API_URL}/search`);
