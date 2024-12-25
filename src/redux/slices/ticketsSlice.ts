@@ -1,27 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-
-interface Ticket {
-  price: number;
-  carrier: string;
-  segments: [
-    {
-      origin: string;
-      destination: string;
-      date: string;
-      stops: string[];
-      duration: number;
-    },
-    {
-      origin: string;
-      destination: string;
-      date: string;
-      stops: string[];
-      duration: number;
-    },
-  ];
-}
-
+import { Ticket } from '../../components/tickets-list/ticket.type';
 type ApiResponse = {
   tickets: Ticket[];
   stop: boolean;

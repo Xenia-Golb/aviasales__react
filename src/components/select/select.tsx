@@ -1,7 +1,7 @@
 import { Component, ReactNode } from 'react';
 import { connect, ConnectedProps } from 'react-redux';
-import { toggleCheckbox } from '../../redux/slices/checkboxSlice'; // Импорт экшена
-import { RootState } from '../../redux/store'; // Импорт RootState
+import { toggleCheckbox } from '../../redux/slices/checkboxSlice';
+import { RootState } from '../../redux/store';
 import style from '../../style/main.module.scss';
 
 type SelectProps = ConnectedProps<typeof connector>;

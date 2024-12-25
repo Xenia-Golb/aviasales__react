@@ -9,11 +9,9 @@
   text-align: left;
   cursor: pointer;
   padding: 10px;
-
   &:hover {
-    background-color: $background-color;
+    background-color: $background-color-hover;
   }
-
   label {
     color: $font-color;
     font-size: $font-size-base;

@@ -9,11 +9,11 @@ type CheckboxState = {
 };
 
 const initialState: CheckboxState = {
-  all: false,
-  none: false,
-  one: false,
-  two: false,
-  three: false,
+  all: true,
+  none: true,
+  one: true,
+  two: true,
+  three: true,
 };
 
 const checkboxSlice = createSlice({
@@ -27,7 +27,6 @@ const checkboxSlice = createSlice({
       const checkbox = action.payload;
 
       if (checkbox === 'all') {
-        // Если переключается "Все", включаем/выключаем все чекбоксы
         const newValue = !state.all;
         state.all = newValue;
         state.none = newValue;
@@ -35,15 +34,10 @@ const checkboxSlice = createSlice({
         state.two = newValue;
         state.three = newValue;
       } else {
-        // Переключаем конкретный чекбокс
         state[checkbox] = !state[checkbox];
-
-        // Если "Все" было включено, но теперь один из чекбоксов выключен, выключаем "Все"
         if (state.all && !state[checkbox]) {
           state.all = false;
         }
-
-        // Если все чекбоксы (кроме "Все") включены, включаем "Все"
         const allChecked = ['none', 'one', 'two', 'three'].every(
           (key) => state[key as keyof CheckboxState]
         );
