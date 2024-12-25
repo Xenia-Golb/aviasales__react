@@ -20,29 +20,34 @@ const checkboxSlice = createSlice({
   name: 'checkbox',
   initialState,
   reducers: {
-    toggleCheckbox(state, action: PayloadAction<keyof CheckboxState>) {
+    toggleCheckbox(
+      state,
+      action: PayloadAction<'all' | 'none' | 'one' | 'two' | 'three'>
+    ) {
       const checkbox = action.payload;
 
       if (checkbox === 'all') {
-        // Если переключается "Все"
-        state.all = !state.all;
-        state.none = state.all;
-        state.one = state.all;
-        state.two = state.all;
-        state.three = state.all;
+        // Если переключается "Все", включаем/выключаем все чекбоксы
+        const newValue = !state.all;
+        state.all = newValue;
+        state.none = newValue;
+        state.one = newValue;
+        state.two = newValue;
+        state.three = newValue;
       } else {
-        // Если переключается любой другой чекбокс
+        // Переключаем конкретный чекбокс
         state[checkbox] = !state[checkbox];
 
-        // Если "Все" был включен, но теперь один из чекбоксов снят
+        // Если "Все" было включено, но теперь один из чекбоксов выключен, выключаем "Все"
         if (state.all && !state[checkbox]) {
           state.all = false;
         }
 
-        // Если все остальные чекбоксы включены, включаем "Все"
-        if (state.none && state.one && state.two && state.three) {
-          state.all = true;
-        }
+        // Если все чекбоксы (кроме "Все") включены, включаем "Все"
+        const allChecked = ['none', 'one', 'two', 'three'].every(
+          (key) => state[key as keyof CheckboxState]
+        );
+        state.all = allChecked;
       }
     },
   },

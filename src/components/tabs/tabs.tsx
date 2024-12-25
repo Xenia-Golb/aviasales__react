@@ -2,20 +2,21 @@ import { Component, ReactNode } from 'react';
 import { connect, ConnectedProps } from 'react-redux';
 import style from '../../style/main.module.scss';
 import { TabsButton } from './tabs-button';
-import { setSortBy } from '../../redux/slices/filterSlice';
+import { setFilterSortBy } from '../../redux/slices/filterSlice';
 
+// Определение RootState (лучше вынести в отдельный файл)
 type RootState = {
-  sort: {
+  filter: {
     sortBy: 'price' | 'duration' | 'optimality';
   };
 };
 
 const mapStateToProps = (state: RootState) => ({
-  sortBy: state.sort.sortBy,
+  sortBy: state.filter.sortBy,
 });
 
 const mapDispatchToProps = {
-  setSortBy,
+  setFilterSortBy,
 };
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -23,7 +24,7 @@ type PropsFromRedux = ConnectedProps<typeof connector>;
 
 export class Tabs extends Component<PropsFromRedux> {
   handleSortChange = (newSort: 'price' | 'duration' | 'optimality') => {
-    this.props.setSortBy(newSort);
+    this.props.setFilterSortBy(newSort);
   };
 
   render(): ReactNode {

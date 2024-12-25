@@ -1,6 +1,6 @@
 import { Component, ReactNode } from 'react';
 import style from '../../style/main.module.scss';
-import { Ticket } from '../index';
+import { Ticket } from './ticket';
 
 type TicketItem = {
   price: string;
@@ -26,14 +26,14 @@ export class TicketsList extends Component<TicketsListProps> {
         {tickets.map((ticket, index) => (
           <Ticket
             key={index}
-            price="13 400 ₽"
-            from="MOW"
-            to="HKT"
-            departureTime="10:45"
-            arrivalTime="08:00"
-            duration="21ч 15м"
-            stops="1"
-            stopCities="HKG"
+            price={ticket.price}
+            from={ticket.from}
+            to={ticket.to}
+            departureTime={ticket.departureTime}
+            arrivalTime={ticket.arrivalTime}
+            duration={ticket.duration}
+            stops={ticket.stops}
+            stopCities={ticket.stopCities}
           />
         ))}
       </div>

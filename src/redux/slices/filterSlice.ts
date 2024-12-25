@@ -1,26 +1,24 @@
-// filterSlice.ts
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+export type SortBy = 'price' | 'duration' | 'optimality';
+
 type FilterState = {
-  sortBy: 'price' | 'duration' | 'optimality';
+  sortBy: SortBy;
 };
 
 const initialState: FilterState = {
-  sortBy: 'price', // Начальное значение сортировки
+  sortBy: 'price',
 };
 
 const filterSlice = createSlice({
   name: 'filter',
   initialState,
   reducers: {
-    setSortBy(
-      state,
-      action: PayloadAction<'price' | 'duration' | 'optimality'>
-    ) {
+    setFilterSortBy(state, action: PayloadAction<SortBy>) {
       state.sortBy = action.payload;
     },
   },
 });
 
-export const { setSortBy } = filterSlice.actions;
+export const { setFilterSortBy } = filterSlice.actions;
 export default filterSlice.reducer;
