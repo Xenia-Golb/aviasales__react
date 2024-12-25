@@ -1,4 +1,4 @@
-import { Component, ReactNode } from 'react';
+import { Component } from 'react';
 import { connect, ConnectedProps } from 'react-redux';
 import style from './App.module.scss';
 import logo from './assets/img/Logo.svg';
@@ -8,106 +8,93 @@ import { toggleCheckbox } from './redux/slices/checkboxSlice';
 import { setFilterSortBy } from './redux/slices/filterSlice';
 import { RootState } from './redux/store';
 import Select from './components/select/select';
+import { fetchTickets, showMoreTickets } from './redux/slices/ticketsSlice';
 
-// Тип для билета
-type Ticket = {
-  price: string;
-  from: string;
-  to: string;
-  departureTime: string;
-  arrivalTime: string;
-  duration: string;
-  stops: string;
-  stopCities: string;
-};
-
-// Пример данных для tickets
-const tickets: Ticket[] = [
-  {
-    price: '13400',
-    from: 'MOW',
-    to: 'HKT',
-    departureTime: '10:45',
-    arrivalTime: '08:00',
-    duration: '21ч 15м',
-    stops: '1',
-    stopCities: 'Гонконг',
-  },
-  {
-    price: '12800',
-    from: 'MOW',
-    to: 'HKT',
-    departureTime: '11:30',
-    arrivalTime: '08:45',
-    duration: '20ч 55м',
-    stops: '0',
-    stopCities: '',
-  },
-  {
-    price: '14000',
-    from: 'MOW',
-    to: 'HKT',
-    departureTime: '12:00',
-    arrivalTime: '09:15',
-    duration: '21ч 15м',
-    stops: '2',
-    stopCities: 'Гонконг, Саньжоу',
-  },
-  {
-    price: '10000',
-    from: 'MOW',
-    to: 'HKT',
-    departureTime: '12:30',
-    arrivalTime: '10:00',
-    duration: '21ч 30м',
-    stops: '3',
-    stopCities: 'Гонконг, Саньжоу, Тайбэй',
-  },
-];
+interface Ticket {
+  price: number;
+  carrier: string;
+  segments: [
+    {
+      origin: string;
+      destination: string;
+      date: string;
+      stops: string[];
+      duration: number;
+    },
+    {
+      origin: string;
+      destination: string;
+      date: string;
+      stops: string[];
+      duration: number;
+    },
+  ];
+}
 
 const mapStateToProps = (state: RootState) => ({
   sortBy: state.filter.sortBy,
   checkbox: state.checkbox,
+  tickets: state.tickets.visibleTickets,
+  loading: state.tickets.loading,
+  error: state.tickets.error,
+  hasMoreTickets:
+    state.tickets.tickets.length > state.tickets.visibleTickets.length,
 });
 
 const mapDispatchToProps = {
   toggleCheckbox,
   setFilterSortBy,
+  fetchTickets,
+  showMoreTickets,
 };
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
 class App extends Component<PropsFromRedux> {
+  componentDidMount() {
+    this.props.fetchTickets();
+  }
+
   // Функция для фильтрации билетов
   filterTickets = () => {
-    const { checkbox } = this.props;
+    const { checkbox, tickets } = this.props;
 
-    return tickets.filter((ticket) => {
-      const stops = Number(ticket.stops);
+    if (!Array.isArray(tickets)) {
+      console.error('Tickets is not an array:', tickets);
+      return [];
+    }
 
-      // Если выбрано "Все", показываем все билеты
+    if (!checkbox) {
+      console.error('Checkbox is not defined:', checkbox);
+      return tickets;
+    }
+
+    return tickets.filter((ticket: Ticket) => {
+      const stopsThere = ticket.segments[0].stops.length;
+      const stopsBack = ticket.segments[1].stops.length;
+
       if (checkbox.all) return true;
 
-      // Проверяем каждый чекбокс
-      const filters = [
-        checkbox.none && stops === 0, // Без пересадок
-        checkbox.one && stops === 1, // 1 пересадка
-        checkbox.two && stops === 2, // 2 пересадки
-        checkbox.three && stops === 3, // 3 пересадки
+      const filtersThere = [
+        checkbox.none && stopsThere === 0,
+        checkbox.one && stopsThere === 1,
+        checkbox.two && stopsThere === 2,
+        checkbox.three && stopsThere === 3,
       ];
 
-      // Если хотя бы один фильтр совпал, показываем билет
-      return filters.some((filter) => filter);
-    });
-  };
+      const filtersBack = [
+        checkbox.none && stopsBack === 0,
+        checkbox.one && stopsBack === 1,
+        checkbox.two && stopsBack === 2,
+        checkbox.three && stopsBack === 3,
+      ];
 
-  // Функция для преобразования длительности в минуты
-  getDurationInMinutes = (duration: string) => {
-    const [hours, minutes] = duration
-      .split('ч')
-      .map((part) => parseInt(part.replace(/\D/g, ''), 10));
-    return hours * 60 + (minutes || 0);
+      return (
+        filtersThere.some((filter) => filter) ||
+        filtersBack.some((filter) => filter)
+      );
+    });
   };
 
   // Функция для сортировки билетов
@@ -116,10 +103,10 @@ class App extends Component<PropsFromRedux> {
     sortBy: 'price' | 'duration' | 'optimality'
   ) => {
     return [...tickets].sort((a, b) => {
-      const priceA = Number(a.price);
-      const priceB = Number(b.price);
-      const durationA = this.getDurationInMinutes(a.duration);
-      const durationB = this.getDurationInMinutes(b.duration);
+      const priceA = a.price;
+      const priceB = b.price;
+      const durationA = a.segments[0].duration + a.segments[1].duration;
+      const durationB = b.segments[0].duration + b.segments[1].duration;
 
       switch (sortBy) {
         case 'price':
@@ -134,10 +121,19 @@ class App extends Component<PropsFromRedux> {
     });
   };
 
-  render(): ReactNode {
-    const { sortBy, setFilterSortBy } = this.props;
+  render() {
+    const { sortBy, setFilterSortBy, loading, error, hasMoreTickets } =
+      this.props;
     const filteredTickets = this.filterTickets();
     const sortedTickets = this.sortTickets(filteredTickets, sortBy);
+
+    if (loading) {
+      return <div>Loading...</div>;
+    }
+
+    if (error) {
+      return <div>Error: {error}</div>;
+    }
 
     return (
       <div className={style['container']}>
@@ -149,9 +145,14 @@ class App extends Component<PropsFromRedux> {
           <div className={style['content']}>
             <Tabs sortBy={sortBy} setFilterSortBy={setFilterSortBy} />
             <TicketsList tickets={sortedTickets} />
-            <button className={style['content__button']}>
-              Показать еще 5 билетов
-            </button>
+            {hasMoreTickets && (
+              <button
+                className={style['content__button']}
+                onClick={() => this.props.showMoreTickets()}
+              >
+                Показать еще 5 билетов
+              </button>
+            )}
           </div>
         </div>
       </div>
