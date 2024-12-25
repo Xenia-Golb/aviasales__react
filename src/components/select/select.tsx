@@ -7,8 +7,12 @@ import style from '../../style/main.module.scss';
 type SelectProps = ConnectedProps<typeof connector>;
 
 class Select extends Component<SelectProps> {
+  handleCheckboxChange = (checkboxName: keyof typeof this.props.checkbox) => {
+    this.props.toggleCheckbox(checkboxName);
+  };
+
   render(): ReactNode {
-    const { toggleCheckbox, checkbox } = this.props;
+    const { checkbox } = this.props;
 
     return (
       <div className={style['select']}>
@@ -18,7 +22,7 @@ class Select extends Component<SelectProps> {
             type="checkbox"
             id="all"
             checked={checkbox.all}
-            onChange={() => toggleCheckbox('all')}
+            onChange={() => this.handleCheckboxChange('all')}
           />
           <label htmlFor="all">Все</label>
         </div>
@@ -27,7 +31,7 @@ class Select extends Component<SelectProps> {
             type="checkbox"
             id="none"
             checked={checkbox.none}
-            onChange={() => toggleCheckbox('none')}
+            onChange={() => this.handleCheckboxChange('none')}
           />
           <label htmlFor="none">Без пересадок</label>
         </div>
@@ -36,7 +40,7 @@ class Select extends Component<SelectProps> {
             type="checkbox"
             id="one"
             checked={checkbox.one}
-            onChange={() => toggleCheckbox('one')}
+            onChange={() => this.handleCheckboxChange('one')}
           />
           <label htmlFor="one">1 пересадка</label>
         </div>
@@ -45,7 +49,7 @@ class Select extends Component<SelectProps> {
             type="checkbox"
             id="two"
             checked={checkbox.two}
-            onChange={() => toggleCheckbox('two')}
+            onChange={() => this.handleCheckboxChange('two')}
           />
           <label htmlFor="two">2 пересадки</label>
         </div>
@@ -54,7 +58,7 @@ class Select extends Component<SelectProps> {
             type="checkbox"
             id="three"
             checked={checkbox.three}
-            onChange={() => toggleCheckbox('three')}
+            onChange={() => this.handleCheckboxChange('three')}
           />
           <label htmlFor="three">3 пересадки</label>
         </div>
@@ -63,7 +67,6 @@ class Select extends Component<SelectProps> {
   }
 }
 
-// Подключение к Redux
 const mapStateToProps = (state: RootState) => ({
   checkbox: state.checkbox,
 });

@@ -31,7 +31,6 @@ export class Ticket extends Component<TicketProps> {
           </div>
         </div>
 
-        {/* Сегмент "Туда" */}
         <div className={style['ticket-items']}>
           <div className={style['ticket__info']}>
             <div className={style['ticket-info__all']}>
@@ -52,7 +51,6 @@ export class Ticket extends Component<TicketProps> {
           </div>
         </div>
 
-        {/* Сегмент "Обратно" */}
         <div className={style['ticket-items']}>
           <div className={style['ticket__info']}>
             <div className={style['ticket-info__all']}>

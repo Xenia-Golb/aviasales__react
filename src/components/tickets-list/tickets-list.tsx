@@ -28,13 +28,10 @@ type TicketsListProps = {
 };
 
 export class TicketsList extends Component<TicketsListProps> {
-  // Функция для форматирования времени
   formatTime = (dateString: string) => {
     const date = new Date(dateString);
     return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
   };
-
-  // Функция для форматирования продолжительности
   formatDuration = (duration: number) => {
     const hours = Math.floor(duration / 60);
     const minutes = duration % 60;
@@ -61,7 +58,7 @@ export class TicketsList extends Component<TicketsListProps> {
                     new Date(ticket.segments[0].date).getTime() +
                       ticket.segments[0].duration * 60000
                   ).toISOString()
-                ), // Время прибытия
+                ),
                 duration: this.formatDuration(ticket.segments[0].duration),
                 stops: ticket.segments[0].stops.length.toString(),
                 stopCities: ticket.segments[0].stops.join(', '),

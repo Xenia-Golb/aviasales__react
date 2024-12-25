@@ -3,13 +3,7 @@ import { connect, ConnectedProps } from 'react-redux';
 import style from '../../style/main.module.scss';
 import { TabsButton } from './tabs-button';
 import { setFilterSortBy } from '../../redux/slices/filterSlice';
-
-// Определение RootState (лучше вынести в отдельный файл)
-type RootState = {
-  filter: {
-    sortBy: 'price' | 'duration' | 'optimality';
-  };
-};
+import { RootState } from '../../redux/store';
 
 const mapStateToProps = (state: RootState) => ({
   sortBy: state.filter.sortBy,
