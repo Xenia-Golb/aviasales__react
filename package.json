@@ -1,10 +1,12 @@
 {
   "name": "aviasales__react",
+  "homepage": "https://xenia-golb.github.io/aviasales__react",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "build": "tsc -b && vite build",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
     "preview": "vite preview",
