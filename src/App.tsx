@@ -2,8 +2,7 @@ import { Component } from 'react';
 import { connect, ConnectedProps } from 'react-redux';
 import style from './App.module.scss';
 import logo from './assets/img/Logo.svg';
-import { Tabs } from './components';
-import { TicketsList } from './components/tickets-list/tickets-list';
+import { Spinner, Tabs, TicketsList } from './components';
 import { toggleCheckbox } from './redux/slices/checkboxSlice';
 import { setFilterSortBy } from './redux/slices/filterSlice';
 import { RootState } from './redux/store';
@@ -41,11 +40,16 @@ class App extends Component<PropsFromRedux> {
       this.props;
 
     if (loading) {
-      return <div>Loading...</div>;
+      return <Spinner />;
     }
 
     if (error) {
-      return <div>Error: {error}</div>;
+      return (
+        <div className={style.error_block}>
+          <div className={style.error}></div>
+          <div className={style.error_message}>{error}</div>
+        </div>
+      );
     }
 
     return (
